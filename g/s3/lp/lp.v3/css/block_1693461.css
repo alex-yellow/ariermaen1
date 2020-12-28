@@ -1,0 +1,253 @@
+.lp-footer-13 * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.lp-footer-13 {
+    position: relative;
+    padding: 48px 0;
+}
+
+.lp-footer-13-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+@media all and (min-width: 600px) {
+    .lp-footer-13-wrap {
+        margin: 0 -24px -48px 0;
+    }
+}
+
+@media all and (min-width: 960px) {
+    .lp-footer-13-wrap {
+        margin: 0 -48px 0 0;
+    }
+}
+
+@media all and (min-width: 1200px) {
+    .lp-footer-13-wrap {
+        margin: 0;
+    }
+}
+
+.lp-footer-13-logo {
+    width: 100%;
+}
+
+@media all and (min-width: 600px) {
+    .lp-footer-13-logo {
+        width: 276px;
+        margin: 0 24px 48px 0;
+    }
+}
+
+@media all and (min-width: 960px) {
+    .lp-footer-13-logo {
+        width: 272px;
+        margin: 0 48px 0 0;
+    }
+}
+
+@media all and (min-width: 1200px) {
+    .lp-footer-13-logo {
+        width: 270px;
+        margin: 0 122px 0 0;
+    }
+}
+
+@media all and (min-width: 1380px) {
+    .lp-footer-13-logo {
+        width: 298px;
+        margin: 0 142px 0 0;
+    }
+}
+
+.lp-footer-13-logo__img {
+    font-size: 0;
+    display: block;
+    width: 134px;
+    height: 60px;
+}
+
+.lp-footer-13-logo__img img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.lp-footer-13-logo__text {
+    margin: 16px 0 0;
+}
+
+.lp-footer-13-nav {
+    width: 100%;
+    margin: 48px 0 0;
+    padding: 0;
+    list-style: none;
+    display: block;
+}
+
+@media all and (min-width: 600px) {
+    .lp-footer-13-nav {
+        width: 276px;
+        margin: 0 24px 48px 0;
+    }
+}
+
+@media all and (min-width: 960px) {
+    .lp-footer-13-nav {
+        width: 165px;
+        margin: 0 48px 0 0;
+    }
+}
+
+@media all and (min-width: 1200px) {
+    .lp-footer-13-nav {
+        width: 270px;
+        margin: 0 24px 0 0;
+    }
+}
+
+@media all and (min-width: 1380px) {
+    .lp-footer-13-nav {
+        width: 298px;
+        margin: 0 32px 0 0;
+    }
+}
+
+.lp-footer-13-nav__item {
+    margin: 16px 0 0;
+    color: #444;
+}
+
+.lp-footer-13-nav__item:first-child {
+    margin: 0;
+}
+
+.lp-footer-13-nav__item:hover .lp-footer-13-nav__item-link {
+    top: -2px;
+}
+
+.lp-footer-13-nav__item-link {
+    display: block;
+    text-decoration: none;
+    width: 100%;
+    position: relative;
+    color: inherit;
+}
+
+.lp-footer-13-location {
+    width: 100%;
+    margin: 48px 0 0;
+}
+
+@media all and (min-width: 600px) {
+    .lp-footer-13-location {
+        width: 276px;
+        margin: 0 24px 48px 0;
+    }
+}
+
+@media all and (min-width: 960px) {
+    .lp-footer-13-location {
+        width: 165px;
+        margin: 0 48px 0 0;
+    }
+}
+
+@media all and (min-width: 1200px) {
+    .lp-footer-13-location {
+        width: 270px;
+        margin: 0 24px 0 0;
+    }
+}
+
+@media all and (min-width: 1380px) {
+    .lp-footer-13-location {
+        width: 298px;
+        margin: 0 32px 0 0;
+    }
+}
+
+.lp-footer-13-location__item {
+    margin: 16px 0 0;
+}
+
+.lp-footer-13-location__item:first-child {
+    margin: 0;
+}
+
+.lp-footer-13-location__text {
+    margin: 2px 0 0;
+}
+
+.lp-footer-13-sm {
+    width: 100%;
+    margin: 48px 0 0;
+}
+
+@media all and (min-width: 600px) {
+    .lp-footer-13-sm {
+        width: 276px;
+        margin: 0 24px 48px 0;
+    }
+}
+
+@media all and (min-width: 960px) {
+    .lp-footer-13-sm {
+        width: 165px;
+        margin: 0 48px 0 0;
+    }
+}
+
+@media all and (min-width: 1200px) {
+    .lp-footer-13-sm {
+        width: 172px;
+        margin: 0;
+    }
+}
+
+@media all and (min-width: 1380px) {
+    .lp-footer-13-sm {
+        width: 188px;
+    }
+}
+
+.lp-footer-13-sm__item {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: 16px 0 0;
+    text-decoration: none;
+    justify-content: flex-start;
+}
+
+.lp-footer-13-sm__item:first-child {
+    margin: 0;
+}
+
+.lp-footer-13-sm__img {
+    font-size: 0;
+    width: 24px;
+    height: 24px;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+.lp-footer-13-sm__text {
+    margin-left: 8px;
+    width: 100%;
+}
+
+span.lp-footer-13-sm__item-icon {
+    flex: 0 0 auto;
+}

@@ -1,0 +1,117 @@
+.fastcons_text_block_pack {
+  padding: 0 0 70px 0; }
+  @media all and (max-width: 768px) {
+  .fastcons_text_block_pack {
+    padding: 0 0 30px 0; } }
+  .fastcons_text_block_pack .fastcons_text_block_title {
+    color: #212121;
+    font-size: 32px;
+    line-height: 40px;
+    padding: 0 0 13px 0;
+    margin: 0;
+    font-weight: normal; }
+  @media all and (max-width: 1024px) and (min-width: 600px) {
+    .fastcons_text_block_pack .fastcons_text_block_title {
+      font-size: 28px; } }
+  @media all and (max-width: 599px) {
+    .fastcons_text_block_pack .fastcons_text_block_title {
+      font-size: 20px;
+      line-height: 25px;
+      padding-bottom: 3px; } }
+  .fastcons_text_block_pack .fastcons_text_block_text {
+    color: #484848;
+    font-size: 14px;
+    line-height: 20px; }
+  @media all and (max-width: 599px) {
+    .fastcons_text_block_pack .fastcons_text_block_text {
+      font-size: 13px;
+      line-height: 19px; } }
+  .fastcons_text_block_pack .fastcons_text_block_images {
+    padding: 22px 0 0 0;
+    font-size: 0;
+    display: -moz-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap; }
+  @media all and (max-width: 499px) {
+    .fastcons_text_block_pack .fastcons_text_block_images {
+      -webkit-box-direction: normal;
+      -webkit-box-orient: vertical;
+      -moz-box-direction: normal;
+      -moz-box-orient: vertical;
+      -webkit-flex-direction: column;
+      -moz-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column; } }
+  .fastcons_text_block_pack .fastcons_text_block_image_in {
+    width: 49%;
+    padding: 18px;
+    border: 1px solid #d7d7d7;
+    box-sizing: border-box;
+    border-radius: 4px;
+    margin: 0 0 10px;
+    text-align: center; }
+  @media all and (max-width: 1024px) {
+    .fastcons_text_block_pack .fastcons_text_block_image_in {
+      padding: 11px; } }
+  @media all and (max-width: 499px) {
+    .fastcons_text_block_pack .fastcons_text_block_image_in {
+      padding: 11px 18px;
+      width: 100%; } }
+  .fastcons_text_block_pack .fastcons_text_block_image_in .fastcons_text_block_image_inner {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; }
+    .fastcons_text_block_pack .fastcons_text_block_image_in .fastcons_text_block_image_inner img {
+      max-width: 100%; }
+
+@media all and (min-width: 1025px) {
+      .decor-wrap.fullWidth .fastcons_text_block_body {
+        display: -moz-box;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        -webkit-align-items: flex-start;
+        -moz-align-items: flex-start;
+        align-items: flex-start; } }
+  @media all and (min-width: 1025px) {
+      .decor-wrap.fullWidth .fastcons_text_block_body .fastcons_text_block_text {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1 0 49.8%;
+        -moz-box-flex: 1;
+        -moz-flex: 1 0 49.8%;
+        -ms-flex: 1 0 49.8%;
+        flex: 1 0 49.8%;
+        padding-right: 15px; } }
+  @media all and (min-width: 1025px) {
+      .decor-wrap.fullWidth .fastcons_text_block_body .fastcons_text_block_image_in {
+        padding: 13px; } }
+  @media all and (min-width: 1025px) {
+      .decor-wrap.fullWidth .fastcons_text_block_body .fastcons_text_block_images {
+        padding-top: 14px; } }
+
+@media all and (min-width: 1025px) {
+        .decor-wrap.middelWidth .fastcons_text_block_body .fastcons_text_block_image_in {
+          padding: 11px; } }
+
+@media all and (min-width: 1025px) {
+      .decor-wrap.miniWidth .fastcons_text_block_title {
+        font-size: 28px; } }
+  @media all and (min-width: 1025px) {
+      .decor-wrap.miniWidth .fastcons_text_block_body .fastcons_text_block_image_in {
+        padding: 11px; } }
