@@ -1,0 +1,915 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Портал-Энерго.ru - энергоэффективность и энергосбережение</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" type="text/css" href="/styles/style.css" />
+	<link rel="stylesheet" type="text/css" href="/styles/datepicker.css" />
+	<link rel="stylesheet" type="text/css" href="/styles/highslide.css" />
+	<link rel="shortcut icon" href="http://portal-energo.ru/favicon.ico" type="image/x-icon" />
+	<link rel="icon" href="http://portal-energo.ru/favicon.ico" type="image/x-icon" />
+	<script type="text/javascript" src="/js/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="/js/jquery-ui-1.8.4.custom.min.js"></script>
+	<script type="text/javascript" src="/js/utils.js"></script>
+	<script type="text/javascript" src="/js/highslide.js"></script>
+	<script type="text/javascript" src="/js/date.js"></script>
+	<script type="text/javascript" src="/js/jquery.datepicker.js"></script>
+	<!--<script type="text/javascript" src="/js/jquery.form.js"></script>-->
+	<!--<script type="text/javascript" src="/js/jfav.js"></script>-->
+	<!--[if lt IE 7]>
+		<link rel="stylesheet" type="text/css" href="/styles/ie.css" />
+		<script type="text/javascript" src="/js/menu.js"></script>
+		<script type="text/javascript" src="/js/iepngfix_tilebg.js"></script>
+	<![endif]-->
+	<!--[if IE 7]>
+		<link rel="stylesheet" type="text/css" href="/styles/ie7.css" />
+	<![endif]-->
+<!-- TinyMCE -->
+<!-- /TinyMCE -->
+
+	<script type="text/javascript">
+//    hs.outlineType = null;
+
+	hs.graphicsDir = '/img/hs/';
+	hs.align = 'center';
+	hs.transitions = ['expand', 'crossfade'];
+	hs.wrapperClassName = 'dark borderless';
+	hs.fadeInOut = true;
+	hs.dimmingOpacity = .75;
+
+	hs.lang = {
+			loadingText : 'Загрузка...',
+			loadingTitle : 'Просмотр',
+			focusTitle : '',
+			fullExpandTitle : 'Показать',
+			creditsText : '',
+			creditsTitle : '',
+			restoreTitle : 'Свернуть'
+		};
+	</script>
+	
+<script type="text/javascript">
+		var init1;
+		var init2;
+		var init3;
+		var df_funcs = {};
+		var df_i = 0;
+		var lastpageurl = '/';
+		var tmpflag = null;
+		var slide_width = 0;
+		var current_slide = 1;
+		
+	$(document).ready(function(){
+			
+			$( "a.noclick" ).click(function(){
+				return false;
+			});
+			
+			$( "a.toggle_generalized" ).click(function(){
+				var rel = $(this).attr( 'rel' );
+				$('#generalized_'+rel).toggle();
+				return false;
+			});
+			
+			$( "a.nofocus" ).focus(function(){
+				$(this).blur();
+			});
+			
+            $.dpText = {
+                TEXT_PREV_YEAR        :    'Предыдущий год',
+                TEXT_PREV_MONTH        :    'Предыдущий месяц',
+                TEXT_NEXT_YEAR        :    'Следующий год',
+                TEXT_NEXT_MONTH        :    'Следующий месяц',
+                TEXT_CLOSE            :    'Закрыть',
+                TEXT_CHOOSE_DATE         :    '<img src="/img/cal.png" alt="Выбрать дату" title="Выбрать дату" class="icon" />',
+				TEXT_CHOOSE_DATE_HINT   :    'Выбрать дату'
+            };
+            $('.calendar').each(function(){
+                date = new Date();
+                if (!$(this).val() > 0) $(this).datePicker({startDate:'01.01.1902', endDate:'01.01.2037'}).val(new Date().asString()).trigger('change');
+                else $(this).datePicker({startDate:'01.01.1902', endDate:'01.01.2037'}).trigger('change');
+            });
+			
+			$("img[title*='Удалить'], img[title*='Снять'], input[value*='Удалить'], img[alt*='Удалить']").each(function(){
+
+					if (!$(this).attr('id'))
+					{
+						 $(this).attr('id', 'df_'+df_i);
+						 df_i++;
+					}
+
+					df_funcs[$(this).attr('id')] = $(this).attr('onclick');
+					$(this).attr('onclick', '');
+
+					$(this).click(function(){
+						 if (window.confirm('Вы уверены, что хотите удалить этот объект? Объект будет удален безвозвратно. Если объект содержит вложения (файлы, фотографии, сообщения и т.д.), они тоже будут удалены безвозвратно. '))
+						 {
+							  var func = df_funcs[$(this).attr('id')];
+							  return func();
+						 }
+						 else
+						 {
+							  return false;
+						 }
+					});
+			});
+
+			/*
+			var rnd = Math.random();
+			if (rnd <= 0.25) {
+				$('#fluke1').show();
+			} else if (rnd > 0.25 && rnd <= 0.5) {
+				$('#fluke2').show();
+			} else if (rnd > 0.5 && rnd <= 0.75) {
+				$('#fluke3').show();
+			} else if (rnd > 0.75 && rnd <= 1) {
+				$('#fluke4').show();
+			}
+			*/
+
+      $('#sape_contents1').detach().appendTo('#sape_wrapper1');
+      $('#sape_contents1').show();
+
+	});
+
+
+
+</script>
+
+
+
+
+<!-- Google.Analytics -->
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	try {
+	var pageTracker = _gat._getTracker("UA-11924297-1");
+	pageTracker._trackPageview();
+	} catch(err) {}</script>
+<!-- /Google.Analytics -->
+
+<!-- begin of Top100 code -->
+	<script id="top100Counter" type="text/javascript" src="http://counter.rambler.ru/top100.jcn?2103568"></script><noscript><img src="http://counter.rambler.ru/top100.cnt?2103568" alt="" width="1" height="1" border="0"/></noscript>
+<!-- end of Top100 code -->
+
+<!--Rating@Mail.ru counter-->
+	<script language="javascript" type="text/javascript">//<![CDATA[
+	d=document;var a='';a+=';r='+escape(d.referrer);js=10;//]]></script>
+	<script language="javascript1.1" type="text/javascript">//<![CDATA[
+	a+=';j='+navigator.javaEnabled();js=11;//]]></script>
+	<script language="javascript1.2" type="text/javascript">//<![CDATA[
+	s=screen;a+=';s='+s.width+'*'+s.height;
+	a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth);js=12;//]]></script>
+	<script language="javascript1.3" type="text/javascript">//<![CDATA[
+	js=13;//]]></script><script language="javascript" type="text/javascript">//<![CDATA[
+	d.write('<img src="http://db.c5.bb.a1.top.mail.ru/counter?id=1792804;js='+js+
+	a+';rand='+Math.random()+'" height="1" width="1" alt="top.mail.ru" border="0" style="position:absolute;margin-left:-1000px" />');
+	if(11<js)d.write('<'+'!-- ');//]]></script>
+	<noscript><img src="http://db.c5.bb.a1.top.mail.ru/counter?js=na;id=1792804" 
+	height="1" width="1" alt="top.mail.ru" style="position:absolute;margin-left:-1000px" border="0" /></noscript>
+	<script language="javascript" type="text/javascript">//<![CDATA[
+	if(11<js)d.write('--'+'&#062');//]]></script>
+<!--// Rating@Mail.ru counter-->
+</div>
+
+
+</head>
+<body>
+
+
+<!-- Yandex.Metrika counter --><script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter509934 = new Ya.Metrika({id:509934, webvisor:true, clickmap:true, trackLinks:true, accurateTrackBounce:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/509934" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!-- /Yandex.Metrika counter -->
+
+
+
+  <!--check code--><!--check code--><div id="sape_contents1">
+      <h2 class="block-header">Реклама</h2>
+    <div class="sape_wrapper"><script type="text/javascript">
+<!--
+var _acic={dataProvider:10};(function(){var e=document.createElement("script");e.type="text/javascript";e.async=true;e.src="//www.acint.net/aci.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})()
+//-->
+</script> Сайт <a href="https://online-vulcan.club/" target="_blank">http://online-vulcan.club/</a> - доступное зеркало .  <a href="https://aviek.ru/catalog-%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B/?filter_%D0%BF%D1%80%D0%BE%D0%B8%D0%B7%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8C=lex" target="_blank">Промышленные компьютеры</a> создан Промышленный. </div>
+  </div>
+
+
+<!-- No index start 1 -->
+<div id="wrapper">
+	<div class="header-helper">
+		<div id="header">
+			<div class="header-visual">
+				<p class="logo"><a href="/" title="Портал-Энерго.ru - энергоэффективность и энергосбережение"><img src="/styles/img/logo.png" alt="Портал-Энерго.ru - энергоэффективность и энергосбережение"></a></p>
+	
+				<div class="utils">
+					<p class="auth">
+												<img src="/styles/img/keyhole.png" alt="">
+						<a href="/auth" title="Вход" class="jslink big">Вход</a>
+						<a href="/users/register" title="Регистрация" class="jslink small">Регистрация</a>
+											</p>
+					
+					
+					<form method="get" action="/search">
+						<p class="search">
+							<input name="query" value="Поиск" type="text" style="color: #cccccc" onfocus="if (this.value=='Поиск') {this.value='';this.style.color='#000000'}" onblur="if (!this.value) {this.value='Поиск';this.style.color='#cccccc'}">
+							<button type="submit"><img src="/styles/img/b-search.png" alt="Найти"></button>
+						</p>
+					</form>
+				</div>
+	
+				<div id="menu">
+										<ul><li><a href="/articles/index/id/2" title="Аналитика" class="withsub">Аналитика</a><div class="submenu columns-1"><ul><li class="toie" id="li1"><div class="submenu columns-1" id="div1"><ul><li><a href="/articles/index/id/141" title="Указы и поручения Президента России">Указы и поручения Президента России</a></li><li><a href="/articles/index/id/18" title="Проекты законов">Проекты законов</a></li><li><a href="/articles/index/id/19" title="Принятые законы">Принятые законы</a></li><li><a href="/articles/index/id/27" title="Проекты постановлений Правительства РФ">Проекты постановлений Правительства РФ</a></li><li><a href="/articles/index/id/28" title="Постановления Правительства РФ">Постановления Правительства РФ</a></li><li><a href="/articles/index/id/29" title="Проекты приказов министерств и ведомств">Проекты приказов министерств и ведомств</a></li><li><a href="/articles/index/id/30" title="Приказы, разъяснения министерств и ведомств">Приказы, разъяснения министерств и ведомств</a></li></ul></div><a href="/articles/index/id/17" id="a1" title="Законодательство">Законодательство</a></li><li class="toie" id="li2"><div class="submenu columns-1" id="div2"><ul><li><a href="/articles/index/id/33" title="Проекты национальных стандартов и технических регламентов">Проекты национальных стандартов и технических регламентов</a></li><li><a href="/articles/index/id/34" title="Действующие стандарты и регламенты">Действующие стандарты и регламенты</a></li><li><a href="/articles/index/id/35" title="Международные стандарты и национальные стандарты за рубежом">Международные стандарты и национальные стандарты за рубежом</a></li><li><a href="/articles/index/id/36" title="Методики">Методики</a></li><li><a href="/articles/index/id/37" title="Рекомендации и правила">Рекомендации и правила</a></li><li><a href="/articles/index/id/38" title="Сертификация и подтверждения соответствия в энергоэффективности">Сертификация и подтверждения соответствия в энергоэффективности</a></li></ul></div><a href="/articles/index/id/32" id="a2" title="Стандарты в сфере энергосбережения">Стандарты в сфере энергосбережения</a></li><li class="toie" id="li3"><div class="submenu columns-1" id="div3"><ul><li><a href="/articles/index/id/40" title="Федеральные">Федеральные</a></li><li><a href="/articles/index/id/41" title="Региональные">Региональные</a></li><li><a href="/articles/index/id/42" title="Муниципальные">Муниципальные</a></li><li><a href="/articles/index/id/43" title="Бюджетные организации">Бюджетные организации</a></li><li><a href="/articles/index/id/44" title="Регулируемые организации">Регулируемые организации</a></li><li><a href="/articles/index/id/45" title="Многоквартирные дома">Многоквартирные дома</a></li><li><a href="/articles/index/id/46" title="Отчетность и мониторинг в сфере энергосбережения">Отчетность и мониторинг в сфере энергосбережения</a></li></ul></div><a href="/articles/index/id/39" id="a3" title="Программы энергосбережения">Программы энергосбережения</a></li><li class="toie" id="li4"><div class="submenu columns-1" id="div4"><ul><li><a href="/articles/index/id/49" title="VIP. Позиции и мнения">VIP. Позиции и мнения</a></li><li><a href="/articles/index/id/50" title="Мнения экспертов">Мнения экспертов</a></li><li><a href="/articles/index/id/51" title="Общесистемные вопросы">Общесистемные вопросы</a></li></ul></div><a href="/articles/index/id/48" id="a4" title="Анализ, мнения, обзоры">Анализ, мнения, обзоры</a></li><li class="toie" id="li5"><div class="submenu columns-1" id="div5"><ul><li><a href="/articles/index/id/53" title="Организация учета энергоресурсов">Организация учета энергоресурсов</a></li><li><a href="/articles/index/id/54" title="Энергоаудит">Энергоаудит</a></li><li><a href="/articles/index/id/55" title="Энергоменеджмент">Энергоменеджмент</a></li><li><a href="/articles/index/id/56" title="Мотивация к энергосбережению">Мотивация к энергосбережению</a></li><li><a href="/articles/index/id/57" title="Энергосервисные услуги">Энергосервисные услуги</a></li><li><a href="/articles/index/id/58" title="Организация финансирования проектов повышения энергоэффективности">Организация финансирования проектов повышения энергоэффективности</a></li><li><a href="/articles/index/id/60" title="Тарифы и тарифная политика">Тарифы и тарифная политика</a></li><li><a href="/articles/index/id/61" title="Государственная поддержка ">Государственная поддержка </a></li><li><a href="/articles/index/id/63" title="Организация конкурсов и аукционов">Организация конкурсов и аукционов</a></li><li><a href="/articles/index/id/175" title="Обучение энергосбережению">Обучение энергосбережению</a></li></ul></div><a href="/articles/index/id/52" id="a5" title="Организация энергосбережения">Организация энергосбережения</a></li><li class="toie" id="li6"><div class="submenu columns-1" id="div6"><ul><li><a href="/articles/index/id/65" title="Энергосбережение в «дальнем» зарубежье">Энергосбережение в «дальнем» зарубежье</a></li><li><a href="/articles/index/id/66" title="Энергосбережение в странах СНГ">Энергосбережение в странах СНГ</a></li><li><a href="/articles/index/id/67" title="Энергосбережение в России">Энергосбережение в России</a></li><li><a href="/articles/index/id/68" title="Пилотные проекты и демонстрационные зоны высокой энергоэффективности">Пилотные проекты и демонстрационные зоны высокой энергоэффективности</a></li><li><a href="/articles/index/id/69" title="Способы энергосбережения">Способы энергосбережения</a></li><li><a href="/articles/index/id/71" title="Советы и консультации ">Советы и консультации </a></li></ul></div><a href="/articles/index/id/64" id="a6" title="Опыт энергосбережения">Опыт энергосбережения</a></li><li class="toie" id="li7"><div class="submenu columns-1" id="div7"><ul><li><a href="/articles/index/id/73" title="Многоквартирные дома">Многоквартирные дома</a></li><li><a href="/articles/index/id/74" title="Индивидуальные дома">Индивидуальные дома</a></li><li><a href="/articles/index/id/75" title="Квартира">Квартира</a></li><li><a href="/articles/index/id/76" title="Социальные объекты">Социальные объекты</a></li><li><a href="/articles/index/id/77" title="ТЭЦ, котельные, отопительные установки">ТЭЦ, котельные, отопительные установки</a></li><li><a href="/articles/index/id/78" title="Тепловые сети">Тепловые сети</a></li><li><a href="/articles/index/id/80" title="Система водоснабжения и канализации">Система водоснабжения и канализации</a></li><li><a href="/articles/index/id/82" title="Квартал">Квартал</a></li><li><a href="/articles/index/id/83" title="Промышленность">Промышленность</a></li><li><a href="/articles/index/id/84" title="Сельское хозяйство">Сельское хозяйство</a></li><li><a href="/articles/index/id/86" title="Транспорт">Транспорт</a></li><li><a href="/articles/index/id/87" title="Связь">Связь</a></li><li><a href="/articles/index/id/139" title="Административные здания">Административные здания</a></li><li><a href="/articles/index/id/140" title="Садовые товаришества">Садовые товаришества</a></li></ul></div><a href="/articles/index/id/72" id="a7" title="Объекты энергосбережения">Объекты энергосбережения</a></li><li class="toie" id="li8"><div class="submenu columns-1" id="div8"><ul><li><a href="/articles/index/id/93" title="Организация РR-компаний">Организация РR-компаний</a></li><li><a href="/articles/index/id/94" title="Конкурсы, премии, гранты ">Конкурсы, премии, гранты </a></li><li><a href="/articles/index/id/95" title="Программы обучения и учебный процесс">Программы обучения и учебный процесс</a></li></ul></div><a href="/articles/index/id/88" id="a8" title="Обучение и пропаганда в энергосбережении">Обучение и пропаганда в энергосбережении</a></li><li class="toie" id="li9"><div class="submenu columns-1" id="div9"><ul><li><a href="/articles/index/id/98" title="Приборы учета">Приборы учета</a></li><li><a href="/articles/index/id/102" title="Технологическое оборудование в промышленности">Технологическое оборудование в промышленности</a></li><li><a href="/articles/index/id/104" title="Электрические сети">Электрические сети</a></li><li><a href="/articles/index/id/106" title="Освещение и реклама">Освещение и реклама</a></li><li><a href="/articles/index/id/108" title="Транспорт">Транспорт</a></li></ul></div><a href="/articles/index/id/97" id="a9" title="Энергосберегающее оборудование">Энергосберегающее оборудование</a></li><li class="toie" id="li10"><div class="submenu columns-1" id="div10"><ul><li><a href="/articles/index/id/115" title="Окна">Окна</a></li></ul></div><a href="/articles/index/id/110" id="a10" title="Энергосберегающие материалы">Энергосберегающие материалы</a></li><li class="toie" id="li11"><div class="submenu columns-1" id="div11"><ul><li><a href="/articles/index/id/122" title="Энергоаудит">Энергоаудит</a></li><li><a href="/articles/index/id/123" title="Финансовый аудит">Финансовый аудит</a></li><li><a href="/articles/index/id/124" title="Энегосервисные услуги">Энегосервисные услуги</a></li><li><a href="/articles/index/id/125" title="Строительство">Строительство</a></li><li><a href="/articles/index/id/126" title="Теплонабжение">Теплонабжение</a></li><li><a href="/articles/index/id/127" title="Управление многоквартирными домами">Управление многоквартирными домами</a></li><li><a href="/articles/index/id/144" title="Вебинары «Портал-Энерго»">Вебинары «Портал-Энерго»</a></li></ul></div><a href="/articles/index/id/121" id="a11" title="Саморегулирование в обеспечении энергосбережения">Саморегулирование в обеспечении энергосбережения</a></li><li class="toie" id="li12"><div class="submenu columns-1" id="div12"><ul><li><a href="/articles/index/id/22" title="Солнечная энергетика">Солнечная энергетика</a></li><li><a href="/articles/index/id/129" title="Использование тепла земли">Использование тепла земли</a></li><li><a href="/articles/index/id/131" title="Тепловые насосы">Тепловые насосы</a></li><li><a href="/articles/index/id/134" title="Вторичные источники энергии">Вторичные источники энергии</a></li><li><a href="/articles/index/id/135" title="Энергия биомассы">Энергия биомассы</a></li><li><a href="/articles/index/id/136" title="Бактериальная энергетика">Бактериальная энергетика</a></li><li><a href="/articles/index/id/142" title="Общие вопросы развития альтернативной энергетики">Общие вопросы развития альтернативной энергетики</a></li></ul></div><a href="/articles/index/id/20" id="a12" title="Альтернативная энергетика">Альтернативная энергетика</a></li><li class="toie" id="li13"><div class="submenu columns-1" id="div13"><ul><li><a href="/articles/index/id/161" title="Федеральные мероприятия">Федеральные мероприятия</a></li><li><a href="/articles/index/id/162" title="Региональные мероприятия">Региональные мероприятия</a></li><li><a href="/articles/index/id/174" title="Международные мероприятия">Международные мероприятия</a></li></ul></div><a href="/articles/index/id/160" id="a13" title="Встречи, конференции, выставки">Встречи, конференции, выставки</a></li></ul></div></li><li><a href="/articles/index/id/164" title="Энергосервис" class="withsub">Энергосервис</a><div class="submenu columns-1"><ul><li class="toie" id="li1"><a href="/articles/index/id/173" id="a1" title="Главное">Главное</a></li><li class="toie" id="li2"><a href="/articles/index/id/165" id="a2" title="Энергосервис в «дальнем» зарубежье">Энергосервис в «дальнем» зарубежье</a></li><li class="toie" id="li3"><a href="/articles/index/id/166" id="a3" title="Энергосервис в странах СНГ">Энергосервис в странах СНГ</a></li><li class="toie" id="li4"><a href="/articles/index/id/167" id="a4" title="Аналитика и мнения экспертов">Аналитика и мнения экспертов</a></li><li class="toie" id="li5"><a href="/articles/index/id/168" id="a5" title="Финансирование и страхование">Финансирование и страхование</a></li><li class="toie" id="li6"><a href="/articles/index/id/169" id="a6" title="Опыт">Опыт</a></li><li class="toie" id="li7"><a href="/articles/index/id/170" id="a7" title="Аудит">Аудит</a></li><li class="toie" id="li8"><a href="/articles/index/id/171" id="a8" title="Конкурсы и аукционы">Конкурсы и аукционы</a></li><li class="toie" id="li9"><a href="/articles/index/id/172" id="a9" title="Образцы документов">Образцы документов</a></li></ul></div></li><li><a href="/articles/index/id/3" title="Библиотека" class="withsub">Библиотека</a><div class="submenu columns-1"><ul><li class="toie" id="li1"><div class="submenu columns-1" id="div1"><ul><li><a href="/articles/index/id/151" title="Действующие законы">Действующие законы</a></li><li><a href="/articles/index/id/152" title="Проекты законов">Проекты законов</a></li><li><a href="/articles/index/id/153" title="Проекты подзаконных актов">Проекты подзаконных актов</a></li><li><a href="/articles/index/id/154" title="Постановления Правительства РФ">Постановления Правительства РФ</a></li><li><a href="/articles/index/id/155" title="Приказы, разъяснения министерств и ведомств">Приказы, разъяснения министерств и ведомств</a></li><li><a href="/articles/index/id/163" title="Региональные нормативные акты">Региональные нормативные акты</a></li></ul></div><a href="/articles/index/id/145" id="a1" title="Законодательство">Законодательство</a></li><li class="toie" id="li2"><div class="submenu columns-1" id="div2"><ul><li><a href="/articles/index/id/156" title="Национальные стандарты">Национальные стандарты</a></li><li><a href="/articles/index/id/157" title="Международные стандарты и национальные стандарты за рубежом">Международные стандарты и национальные стандарты за рубежом</a></li><li><a href="/articles/index/id/158" title="Методики, правила, разъяснения">Методики, правила, разъяснения</a></li><li><a href="/articles/index/id/159" title="Технические регламенты">Технические регламенты</a></li></ul></div><a href="/articles/index/id/149" id="a2" title="Стандарты и технические регламенты">Стандарты и технические регламенты</a></li></ul></div></li><li><a href="#" title="Компании" class="withsub">Компании</a><div class="submenu columns-1"><ul><li class="toie" id="li1"><a href="/companies/index/type/2" id="a1" title="СРО">СРО</a></li><li class="toie" id="li2"><a href="/companies/index/type/4" id="a2" title="Энергоаудиторы">Энергоаудиторы</a></li><li class="toie" id="li3"><a href="/companies/index/type/3" id="a3" title="Учебные центры">Учебные центры</a></li><li class="toie" id="li4"><a href="/companies/index/type/7" id="a4" title="Некоммерческие партнерства">Некоммерческие партнерства</a></li><li class="toie" id="li5"><a href="/companiesblogs/index" id="a5" title="Блоги компаний">Блоги компаний</a></li></ul></div></li><li><a href="/webinars" title="Конференции" class="withsub">Конференции</a><div class="submenu columns-1"><ul><li class="toie" id="li1"><a href="/webinars/details/id/8" id="a1" title="Энергетический сервис в странах СНГ">Энергетический сервис в странах СНГ</a></li><li class="toie" id="li2"><a href="/webinars/details/id/7" id="a2" title="Энергоаудит. Перспективы проблемы, рекомендации">Энергоаудит. Перспективы проблемы, рекомендации</a></li><li class="toie" id="li3"><a href="/webinars/details/id/6" id="a3" title="Организация энергосбережения в ЖКХ">Организация энергосбережения в ЖКХ</a></li><li class="toie" id="li4"><a href="/webinars/details/id/5" id="a4" title="Организация разработки, финансирования и реализации энергосервисных контрактов">Организация разработки, финансирования и реализации энергосервисных контрактов</a></li><li class="toie" id="li5"><a href="/webinars/details/id/4" id="a5" title="Организация учета энергоресурсов в жилищном фонде">Организация учета энергоресурсов в жилищном фонде</a></li><li class="toie" id="li6"><a href="/webinars/details/id/3" id="a6" title="Разработка муниципальных и региональных программ энергосбережения. Проблемы, мнения, рекомендации">Разработка муниципальных и региональных программ энергосбережения. Проблемы, мнения, рекомендации</a></li></ul></div></li><li><a href="/b2bcontext/research/page.php" title="Исследования">Исследования</a></li><li class="RSS"><a href="/index/feed" title="RSS"><img src="/styles/img/b-rss.png" alt="RSS"></a></li></ul>
+				</div>
+	
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="header-lookat-block" style="width:100%; text-align:center;">
+									      
+      	</div>
+	<div id="body">
+
+
+
+
+	<div class="clear"></div>
+
+<!-- No index end 1 -->
+
+
+	<script type="text/javascript">
+	var slides_count = 0;
+	var slide_deny = 0;
+	var slide = null;
+	var slide_time = 2500;
+	var slide_timer;
+	
+		$(window).resize(function(){
+			setSize();
+		});
+		
+		$(document).ready(function(){
+			setSize();
+			slide = setTimeout(rollSlides, slide_time);
+			
+			$('#week-tab').live('mouseenter', function(){
+				slide_deny = 1;
+				clearTimeout(slide);
+			});
+			$('#week-tab').live('mouseleave', function(){
+				slide_deny = 0;
+				slide = setTimeout(rollSlides, slide_time);
+			});
+			
+			$('#slider .right').live('click', function(){
+				if (!$(this).hasClass('hover')){
+					rollSlide(current_slide+1);
+				}
+			});
+			$('#slider .left').live('click', function(){
+				if (!$(this).hasClass('hover')){
+					rollSlide(current_slide-1);
+				}
+			});
+			
+			$('.roller .round').click(function(){
+				var need_id = parseInt($(this).attr('id').replace('roller-', ''));
+				rollSlide(need_id);
+			});
+			
+//			if (Math.random() >= 0.5) {
+//				$('#teplocom1').hide();
+//			} else {
+//				$('#teplocom2').hide();
+//			}
+			
+		});
+		
+		function setSize(){
+			var w = 0;
+			
+			$('.roller .round').each(function(){
+				w = w + parseInt($(this).css('width'));
+			});
+			var w2 = parseInt($('#slider .middle').css('width'));
+			slide_width = w2;
+			$('.roller .round:first').css('margin-left', ((w2-w)/2)+'px');
+			$('.week_slide').css('width', (w2-100)+'px');
+			$('#roll-slides').css('width', (slides_count*w2)+'px');
+			$('#slides').css('margin-left', '0');
+			current_slide = 1;
+			$('.roller .active').removeClass('active');
+			$('.roller .round:eq(0)').addClass('active');
+			$('#slider .left').addClass('hover');
+		}
+		
+		function rollSlides(){
+			if (current_slide != slides_count){
+				rollSlide(current_slide+1);
+			}else{
+				rollSlide(1);
+			}
+			clearTimeout(slide);
+			slide = setTimeout(rollSlides, slide_time);
+		}
+		
+		function rollSlide(slide_id){
+			var old_pos = current_slide;
+			current_slide = slide_id;
+			$('#slider .right').removeClass('hover');
+			$('#slider .left').removeClass('hover');
+			if  (current_slide == 1){
+				$('#slider .left').addClass('hover');
+			}
+			if  (current_slide == slides_count){
+				$('#slider .right').addClass('hover');
+			}
+			var offset = 0;
+			var time_offset = 300;
+			$('.roller .active').removeClass('active');
+			$('.roller .round:eq('+(slide_id-1)+')').addClass('active');
+			if (slide_id > old_pos){
+				offset = slide_width * (Math.abs(slide_id - old_pos));
+				if (offset > slide_width * slides_count){
+					offset = slide_width * slides_count;
+				}
+				$('#slides').animate({'margin-left': '-='+offset}, time_offset);
+			}else{
+				offset = slide_width * (Math.abs(slide_id - old_pos));
+				if (offset > slide_width * slides_count){
+					offset = slide_width * slides_count;
+				}
+				$('#slides').animate({'margin-left': '+='+offset}, time_offset);
+			}
+		}
+	
+</script>
+<div class="double-columns body-block">
+	<div class="double-columns-wrapper">
+		<div class="double-left">
+			<div class="double-block-content">
+				
+				<!-- Аналитические статьи -->
+				<div class="block padded" style="padding-left: 0; padding-right: 0;">
+					<h2 class="block-header lined">Аналитические статьи</h2>
+																						<h2><a href="/articles/details/id/991" title="О безреагентной обработке воды для защиты от накипи и коррозии.    ">О безреагентной обработке воды для защиты от накипи и коррозии.    </a></h2>
+						<div class="imaged" style="margin-bottom: 1em;">
+							<div class="text">
+								<div class="content">
+									<p>Многообразие выпускаемых оборудования для безреагентной обработки воды как в нашей стране, так и за рубежом, а также совершенствование производителями уже существующих устройств затрудняет процесс выбора того или иного аппарата или прибора. Представляем Вам сравнительный анализ устройств безреагентной обработки воды для защиты от накипи и коррозии. Анализ подготовлен Владимиром Васильевичем...</p>
+								</div>
+							</div>
+							<div class="photo">
+								<p><a href="/articles/details/id/991" title="О безреагентной обработке воды для защиты от накипи и коррозии.    ">
+																			<img class="photo-image" src="/files/articles/thumb2/portal-energo_ru_teplochistka.jpg" alt="О безреагентной обработке воды для защиты от накипи и коррозии.    " />
+																	</a></p>
+							</div>
+						</div>
+																																										<div style="float: left; width: 100%; clear: both">
+	<div class="status-bar">
+		<div>
+									<span class="date">27.06.2019</span>
+					&nbsp;|&nbsp;
+													<span class="category">
+																			<a href="/articles/index/id/50" title="Мнения экспертов">Мнения экспертов</a>
+											</span>
+				                		</div>
+				<div class="clear"></div>
+	</div>
+</div>
+
+<div class="clear"></div>									</div>
+				<!-- /Аналитические статьи -->
+				<div class="double-columns">
+					<div class="double-columns-wrapper">
+						<div class="">
+							<div class="double-block-content">
+							<!-- Внутренний левый столбец -->
+
+								<h2 class="block-header lined">Последние комментарии</h2>
+								<div class="block">
+									<div class="news-list">
+																					<p><em class="date">02 января 2020</em><br />
+												<a href="/articles/details/id/554#comment1480" title=""></a></p>
+																					<p><em class="date">24 сентября 2018</em><br />
+												<a href="/articles/details/id/954#comment1397" title="">Экономить электроэнергию и формировать надежную работу оборудования помогают преобразователи...</a></p>
+																					<p><em class="date">14 сентября 2018</em><br />
+												<a href="/blogs_posts/details/id/1135#comment1384" title="">Рынок все поставит на свои места, осталось лишь не сдерживать тарифы.</a></p>
+																			</div>
+								</div>
+
+								<!-- Список новостей -->
+								<h2 class="block-header lined">Новости</h2>
+								<div class="block">
+																		<div class="news-list">
+																					<p><em class="date">15 января 2017</em><br />
+												<a href="/news/details/id/306" title="Нет счетчика воды или электроэнергии, плати в на 50% больше!">Нет счетчика воды или электроэнергии, плати в на 50% больше!</a></p>
+																					<p><em class="date">28 декабря 2016</em><br />
+												<a href="/news/details/id/305" title="Энергосбережение 80%! Холдинг &laquo;Технодинамика&raquo; внедряет технологии &laquo;умной инженерии&raquo;. ">Энергосбережение 80%! Холдинг &laquo;Технодинамика&raquo; внедряет технологии &laquo;умной инженерии&raquo;. </a></p>
+																					<p><em class="date">19 декабря 2016</em><br />
+												<a href="/news/details/id/304" title="Эффективность и энергосбережение  из облака   ">Эффективность и энергосбережение  из облака   </a></p>
+																				<div class="status-bar">
+											<p class="comments">
+																																					<a href="/news/index" title="Все новости">Все новости&nbsp;&rarr;</a>
+																							</p>
+										</div>
+									</div>
+								</div>
+								<!-- /Список новостей -->
+
+
+							</div>
+						</div>
+					</div>
+					
+
+																	<!-- /Список новостей -->
+
+																				</div>
+			</div>
+		</div>
+	</div>
+	<div class="double-right">
+		<div class="double-block-content">
+			<div class="double-columns" style="margin-bottom: 0">
+				<!-- Блок Компании -->
+					<div class="double-columns">
+						<!-- Левый столбец -->
+
+
+
+												
+				<div class="double-columns-wrapper">
+					<div class="double-left">
+					<!-- Список статей -->
+					<h2 class="block-header lined">Статьи</h2>
+										<div class="articles" style="float: left; width: 100%;">
+													<div class="icons">
+								<div class="text">
+									<div class="content">
+																																									<h3><a href="/articles/details/id/990" title="Bosch. Возможности в теплоэнергетике">Bosch. Возможности в теплоэнергетике</a></h3>
+									</div>
+								</div>
+								<div class="icon">
+									<a href="/articles/details/id/990" title="Bosch. Возможности в теплоэнергетике">
+																					<img class="photo-image" src="/files/articles/thumb3/portal-energo_ru_bosh3.jpg" alt="Bosch. Возможности в теплоэнергетике" />
+																			</a>
+								</div>
+							</div>
+													<div class="icons">
+								<div class="text">
+									<div class="content">
+																																									<h3><a href="/articles/details/id/989" title="Форум &laquo;Евразийская неделя&raquo;">Форум &laquo;Евразийская неделя&raquo;</a></h3>
+									</div>
+								</div>
+								<div class="icon">
+									<a href="/articles/details/id/989" title="Форум &laquo;Евразийская неделя&raquo;">
+																					<img class="photo-image" src="/files/articles/thumb3/portal-energo_ru_eraziyskaya_nedelya.jpg" alt="Форум &laquo;Евразийская неделя&raquo;" />
+																			</a>
+								</div>
+							</div>
+													<div class="icons">
+								<div class="text">
+									<div class="content">
+																																									<h3><a href="/articles/details/id/988" title="Библиотека энергоэффективности и энергосбережения">Библиотека энергоэффективности и энергосбережения</a></h3>
+									</div>
+								</div>
+								<div class="icon">
+									<a href="/articles/details/id/988" title="Библиотека энергоэффективности и энергосбережения">
+																					<img class="photo-image" src="/files/articles/thumb3/portal-energo_ru_mei.jpeg" alt="Библиотека энергоэффективности и энергосбережения" />
+																			</a>
+								</div>
+							</div>
+													<div class="icons">
+								<div class="text">
+									<div class="content">
+																																									<h3><a href="/articles/details/id/987" title="В.В. Кудрявый. Энерголоббизм">В.В. Кудрявый. Энерголоббизм</a></h3>
+									</div>
+								</div>
+								<div class="icon">
+									<a href="/articles/details/id/987" title="В.В. Кудрявый. Энерголоббизм">
+																					<img class="photo-image" src="/files/articles/thumb3/portal-energo_ru_kudryaviy_v_v_1.jpg" alt="В.В. Кудрявый. Энерголоббизм" />
+																			</a>
+								</div>
+							</div>
+												<div class="status-bar">
+							<p class="comments">
+																<a href="/articles/index/id/2" title="Все статьи">Еще 894 статьи&nbsp;&rarr;</a>							</p>
+						</div>
+					</div>
+
+						<!-- Список статей -->
+						<h2 class="block-header lined">Комментируемые статьи</h2>
+												<div class="articles" style="float: left; width: 100%;">
+															<div class="icons">
+									<div class="text">
+										<div class="content">
+																																																								<h3><a href="/articles/details/id/990" title="Bosch. Возможности в теплоэнергетике">Bosch. Возможности в теплоэнергетике</a></h3>
+										</div>
+									</div>
+									<div class="icon">
+																				<a href="/articles/details/id/990" title="Bosch. Возможности в теплоэнергетике">
+																							<img class="photo-image" src="/files/articles/thumb3/portal-energo_ru_bosh3.jpg" alt="Bosch. Возможности в теплоэнергетике" />
+																					</a>
+									</div>
+								</div>
+															<div class="icons">
+									<div class="text">
+										<div class="content">
+																																																								<h3><a href="/articles/details/id/991" title="О безреагентной обработке воды    ">О безреагентной обработке воды    </a></h3>
+										</div>
+									</div>
+									<div class="icon">
+																				<a href="/articles/details/id/991" title="О безреагентной обработке воды    ">
+																							<img class="photo-image" src="/files/articles/thumb3/portal-energo_ru_teplochistka.jpg" alt="О безреагентной обработке воды    " />
+																					</a>
+									</div>
+								</div>
+															<div class="icons">
+									<div class="text">
+										<div class="content">
+																																																								<h3><a href="/articles/details/id/989" title="Форум &laquo;Евразийская неделя&raquo;">Форум &laquo;Евразийская неделя&raquo;</a></h3>
+										</div>
+									</div>
+									<div class="icon">
+																				<a href="/articles/details/id/989" title="Форум &laquo;Евразийская неделя&raquo;">
+																							<img class="photo-image" src="/files/articles/thumb3/portal-energo_ru_eraziyskaya_nedelya.jpg" alt="Форум &laquo;Евразийская неделя&raquo;" />
+																					</a>
+									</div>
+								</div>
+															<div class="icons">
+									<div class="text">
+										<div class="content">
+																																																								<h3><a href="/articles/details/id/988" title="Библиотека энергоэффективности и энергосбережения">Библиотека энергоэффективности и энергосбережения</a></h3>
+										</div>
+									</div>
+									<div class="icon">
+																				<a href="/articles/details/id/988" title="Библиотека энергоэффективности и энергосбережения">
+																							<img class="photo-image" src="/files/articles/thumb3/portal-energo_ru_mei.jpeg" alt="Библиотека энергоэффективности и энергосбережения" />
+																					</a>
+									</div>
+								</div>
+														<div class="status-bar">
+								<p class="comments">
+									<a href="/articles/lastcommented" title="Другие статьи">Другие статьи&nbsp;&rarr;</a>
+								</p>
+							</div>
+						</div>
+						<!-- /Список статей -->
+
+						<div class="double-block-content">
+							<!-- Внутренний правый столбец -->
+							<!-- Список новостей -->
+														
+							
+
+														<!-- /Список новостей -->
+
+							<div class="double-block-content">
+
+															</div>
+
+														
+						</div>
+											<!-- /Список статей -->
+													
+								
+
+								
+													</div>
+						</div>
+						</div>
+
+						<div class="double-right">
+							<div class="double-block-content">
+								<div class="double-block-content">
+
+									<div class="media-block" style="width:240px; height:240px; padding:0; margin:0 auto 20px auto; border: 1px solid #333;">
+										<a href="http://waviot.tech/snizhenie-odn.html" target="_blank"><img src="/img/lookat/vaviot.gif" onclick ="yaCounter509934.reachGoal('vaviot_click'); return true;"></a>
+									</div>
+
+									
+									
+										<!-- Яндекс.Директ -->
+										<div id="yandex_ad"></div>
+										<script type="text/javascript">
+										(function(w, d, n, s, t) {
+										w[n] = w[n] || [];
+										w[n].push(function() {
+										Ya.Direct.insertInto(76896, "yandex_ad", {
+										stat_id: 2,
+										site_charset: "utf-8",
+										ad_format: "direct",
+										font_size: 1,
+										type: "vertical",
+										limit: 3,
+										title_font_size: 3,
+										site_bg_color: "FFFFFF",
+										header_bg_color: "FEEAC7",
+										title_color: "0000CC",
+										url_color: "006600",
+										text_color: "000000",
+										hover_color: "0066FF",
+										favicon: true
+										});
+										});
+										t = d.documentElement.firstChild;
+										s = d.createElement("script");
+										s.type = "text/javascript";
+										s.src = "http://an.yandex.ru/system/context.js";
+										s.setAttribute("async", "true");
+										t.insertBefore(s, t.firstChild);
+										})(window, document, "yandex_context_callbacks");
+										</script>
+									
+
+									<div id="sape_wrapper1">
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
+				<!-- /Блок компании -->
+				<!-- /ШИРОКИЙ БЛОК. ПРИМЕР -->
+				<!-- ДВЕ КОЛОНКИ БЛОК. ПРИМЕР -->
+				<div class="double-columns">
+					<div class="double-columns-wrapper">
+						<div class="double-left">
+							<!-- Внутренний правый столбец -->
+
+							<div class="double-block-content">
+								<div class="double-block-content">
+
+
+								
+								
+								<!-- Внутренний левый столбец -->
+								</div>
+							</div>
+							
+							<!-- Внутренний правый столбец -->
+							<div class="double-block-content">
+								<div class="double-block-content">
+								<!-- Внутренний левый столбец -->
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="double-right">
+						<div class="double-block-content">
+							<div class="double-block-content">
+							<!-- Внутренний левый столбец -->
+																
+								
+								<div class="double-block-content">
+								<!-- Внутренний левый столбец -->
+																	</div>
+							</div>
+
+							
+						</div>
+					</div>
+				</div>
+				<!-- /ДВЕ КОЛОНКИ. ПРИМЕР -->
+		</div>
+	</div>
+</div>
+<div class="clear"></div>
+
+
+<div class="double-columns">
+	<div class="double-columns-wrapper">
+		<div class="double-left">
+			<!-- Блок в 2 колонки -->
+			<div class="double-block-content">
+				<h2 class="block-header">О Портале</h2>
+				<div class="tabbed-block">
+					<ul>
+						<li class="first"><span><a href="#tab-3-1" class="nofocus" title="Посещаемость"><span>Посещаемость</span></a></span></li>
+						<li><span><a href="#tab-3-2" class="nofocus" title="География"><span>География</span></a></span></li>
+						<li><span><a href="#tab-3-3" class="nofocus" title=""><span>Аудитория</span></a></span></li>
+					</ul>
+					<div class="block padded">
+						<div id="tab-3-1">
+																																											<h2>
+								<a href="/blockarticles/details/id/3" title="Посещаемость">Посещаемость</a>
+															</h2>
+							<div class="imaged" style="margin-bottom: 1em;">
+																	<p style="float:left;margin-right:20px;margin-bottom:10px;">
+										<a href="/blockarticles/details/id/3" title="Посещаемость">
+											<img class="photo-image" src="/files/block_articles/thumb2/poseshchaemost2.png" alt="Посещаемость" />
+										</a>
+									</p>
+																<div>
+									<p>&laquo;Портал-Энерго.ru&raquo; ежедневно собирает специализированную аудиторию  около 1500 посетителей. Основу посещаемости составляют специалисты по энергосбережению, руководители предприятий и потребители энергосберегающих технологий и услуг. Комплексное освещение проблем отрасли и концентрированная аналитика сформировали постоянную аудиторию Портала. Проект "Портал-Энерго.ru" занимает  прочные позиции среди сайтов об энергосбережении в России.</p>
+									<p style="text-align:right;"><a href="/blockarticles/details/id/3">Подробнее о статистике →</a></p>
+								</div>
+							</div>
+						</div>
+						<div id="tab-3-2">
+																																											<h2>
+								<a href="/blockarticles/details/id/4" title="География посещаемости">География посещаемости</a>
+															</h2>
+							<div class="imaged" style="margin-bottom: 1em;">
+																	<p style="float:left;margin-right:20px;margin-bottom:10px;">
+										<a href="/blockarticles/details/id/4" title="География посещаемости">							
+											<img class="photo-image" src="/files/block_articles/thumb2/geografiya2.png" alt="География посещаемости" />
+										</a>
+									</p>
+																<div>
+									<p>&laquo;Портал-Энерго.ru&raquo; уделяет много внимания проблемам, специфичным для регионов. Описание применения федеральной политики в субъектах Федерации и обилие предлагаемых способов энергосбережения привели к устойчивому интересу к сайту посетителей практически из всех регионов России.</p>
+									<p style="text-align:right;"><a href="/blockarticles/details/id/3">Статистика по регионам →</a></p>
+								</div>
+							</div>
+						</div>
+						<div id="tab-3-3">
+																																											<h2>
+								<a href="/blockarticles/details/id/7" title="Аудитория">Аудитория</a>
+															</h2>
+							<div class="imaged" style="margin-bottom: 1em;">
+																	<p style="float:left;margin-right:20px;margin-bottom:10px;">
+										<a href="/blockarticles/details/id/7" title="Аудитория">							
+											<img class="photo-image" src="/files/block_articles/thumb2/n5ao4556.jpg" alt="Аудитория" />
+										</a>
+									</p>
+																<div>
+									&laquo;Портал-Энерго.ru&raquo; сосредоточил свои усилия на формировании концентрированной аудитории, интересы которой непосредственно связаны с процессами энергосбережения. На данный момент мы анализируем структуру посещаемости по статистике поисковых переходов и по телефонным/почтовым контактам.									<p style="text-align:right;"><a href="/blockarticles/details/id/7">Подробнее об аудитории →</a></p>
+								</div>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="double-right">
+		<div class="double-columns" style="padding-top: 7px;">
+			<div class="double-columns-wrapper">
+				<div class="double-left">
+					<div class="double-block-content">
+																																				<h2 class="block-header lined">Реклама на Портале
+													</h2>
+												<p>
+							<a href="/blockarticles/details/id/2" title="Реклама на Портале">
+								<img class="photo-image" src="/files/block_articles/thumb5/fqbxy0yx.jpg" alt="Реклама на Портале" />
+							</a>
+						</p>
+												<p>«Портал-Энерго.ru» является коммерчески-ориентированным информационным ресурсом в сфере энергосбережения в России. Понимая потребность растущего рынка энеросбережения в рекламе, мы предлагаем гибкие сервисы для продвижения Вашего бизнеса. В нашем арсенале не только традиционная баннерная реклама. Это еще и блоги компаний, анонсы событий, интернет-конференции и другие, активно разрабатываемые рекламные сервисы.</p>
+					</div>
+				</div>
+			</div>
+			<div class="double-right">
+				<div class="double-block-content">
+																															<h2 class="block-header lined">Контактная информация</h2>
+																		<p><img src="/img/icons/mobile_phone.png" alt="Телефон" class="inline-icon" /> +7 (910) 905-20-89<br />
+<img src="/img/icons/mail.png" alt="Электронная почта" class="inline-icon" /> <a href="mailto:info@portal-energo.ru">info@portal-energo.ru</a><br />
+<img src="/img/icons/user.png" alt="Руководитель проекта" class="inline-icon" /> Сергей Коваль<br />
+
+</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="clear"></div>
+
+<h2 class="block-header lined">
+	<a href="/companies/partners" title="Наши партнеры">Наши партнеры</a>
+</h2>
+	<div class="block">
+		<div class="images-list" id="partners">
+							<div class="item">
+										<p class="partner-logo"><a href="/companies/details/id/1133" title="Общественная палата Российской Федерации">
+													<img src="/files/companies/portal-energo_ru_obshchestvennaya_palata.png" alt="Общественная палата Российской Федерации" />
+											</a></p>
+					<p><a href="/companies/details/id/1133" title="Общественная палата Российской Федерации">Общественная палата Российской Федерации</a></p>
+				</div>
+							<div class="item">
+										<p class="partner-logo"><a href="/companies/details/id/1695" title="Комитет Государственной Думы по энергетике">
+													<img src="/files/companies/portal-energo_ru_gerb_dumi_75.png" alt="Комитет Государственной Думы по энергетике" />
+											</a></p>
+					<p><a href="/companies/details/id/1695" title="Комитет Государственной Думы по энергетике">Комитет Государственной Думы по энергетике</a></p>
+				</div>
+							<div class="item">
+										<p class="partner-logo"><a href="/companies/details/id/30" title="Российское энергетическое агентство">
+													<img src="/files/companies/portal-energo_ru_rae.png" alt="Российское энергетическое агентство" />
+											</a></p>
+					<p><a href="/companies/details/id/30" title="Российское энергетическое агентство">Российское энергетическое агентство</a></p>
+				</div>
+							<div class="item">
+										<p class="partner-logo"><a href="/companies/details/id/1698" title="Ассоциация организаций в области энергетики">
+													<img src="/files/companies/portal-energo_ru_logo_aooe.jpg" alt="Ассоциация организаций в области энергетики" />
+											</a></p>
+					<p><a href="/companies/details/id/1698" title="Ассоциация организаций в области энергетики">Ассоциация организаций в области энергетики</a></p>
+				</div>
+							<div class="item">
+										<p class="partner-logo"><a href="/companies/details/id/1719" title="Государственная информационная система в области энергосбережения и повышения энергоэффективности">
+													<img src="/files/companies/portal-energo_ru_gisee.jpg" alt="Государственная информационная система в области энергосбережения и повышения энергоэффективности" />
+											</a></p>
+					<p><a href="/companies/details/id/1719" title="Государственная информационная система в области энергосбережения и повышения энергоэффективности">Государственная информационная система в области энергосбережения и повышения энергоэффективности</a></p>
+				</div>
+							<div class="item">
+										<p class="partner-logo"><a href="/companies/details/id/23" title="НП &laquo;Национальное агентство по энергосбережению и возобновляемым источникам энергии&raquo;">
+													<img src="/files/companies/naevi.png" alt="НП &laquo;Национальное агентство по энергосбережению и возобновляемым источникам энергии&raquo;" />
+											</a></p>
+					<p><a href="/companies/details/id/23" title="НП &laquo;Национальное агентство по энергосбережению и возобновляемым источникам энергии&raquo;">НП &laquo;Национальное агентство по энергосбережению и возобновляемым источникам энергии&raquo;</a></p>
+				</div>
+					</div>
+		<p style="text-align:right;margin:0pt;">
+			<a href="/companies/partners" title="Все партнеры">Все партнеры&nbsp;&rarr;</a>
+		</p>
+	</div><script>
+
+	$(document).ready(function() {
+//		if (Math.random() >= 0.5) {
+//			$('#teplocom1').hide();
+//		} else {
+//			$('#teplocom2').hide();
+//		}		
+	});
+
+</script>
+
+
+</div></div></div>
+
+
+
+
+
+	<div class="fixed-right">
+			</div>
+
+	<div id="footer">
+		<div class="footer-visual">
+			<div class="bottom">
+				<div class="menu">
+					<div class="menu-content" style="height: 20px">
+						<ul>
+							<li>
+								<a href="/articles/index/id/2" title="Аналитика">Аналитика</a>
+							</li>
+							<li>
+								<a href="/articles/index/id/145" title="Библиотека">Библиотека</a>
+							</li>
+							<li>
+								<a href="/companies/index/type/2" title="Каталог фирм">Каталог фирм</a>
+							</li>
+							<li>
+								<a href="/articles/index/id/144" title="Вебинары">Вебинары</a>
+							</li>
+						</ul>
+						
+						<div class="clear"></div>
+					</div>
+				</div>
+	
+				<div class="copy">
+					<p class="logo"><a href="/" title="Портал-Энерго.ru - энергоэффективность и энергосбережение"><img src="/styles/img/footer-logo.png" alt="Портал-Энерго.ru - энергоэффективность и энергосбережение"></a></p>
+					<p style="margin-top:0px;">© 2009 Портал-Энерго<br>
+					(910) 905-20-89</p>
+					<div style="margin-top:60px;">
+						<!-- begin of Top100 logo -->
+							<a target="_blank" rel="nofollow"><img src="http://top100-images.rambler.ru/top100/banner-88x31-rambler-gray2.gif" alt="Rambler's Top100" width="88" height="31" style="border:0;" /></a>
+						<!-- end of Top100 logo -->
+						<!--Rating@Mail.ru logo-->
+							<a target="_top" rel="nofollow">
+								<img style="padding-left:9px;border:0;" src="http://db.c5.bb.a1.top.mail.ru/counter?id=1792804;t=49;l=1" height="31" width="88" alt="Рейтинг@Mail.ru" />
+							</a>
+						<!--// Rating@Mail.ru logo-->
+	
+						<!--www.liveinternet.ru--><!--LiveInternet counter-->
+							<script type="text/javascript"><!--
+							document.write("<a rel='nofollow' target=_blank><img src='//counter.yadro.ru/hit?t52.6;r"+
+							escape(document.referrer)+((typeof(screen)=="undefined")?"":
+							";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+							screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+							";"+Math.random()+
+							"' alt='' title='LiveInternet: показано число просмотров и"+
+							" посетителей за 24 часа' "+
+							"border='0' width='88' height='31'><\/a>")
+							//--></script>
+						<!--/LiveInternet--><!--/www.liveinternet.ru-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- No index end 2 -->
+</body>
+</html>
